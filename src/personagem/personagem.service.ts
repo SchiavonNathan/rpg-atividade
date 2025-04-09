@@ -14,7 +14,7 @@ export class PersonagemService {
   ) {}
 
   
-  async create(createPersonagemDto: CreatePersonagemDto) {
+  create(createPersonagemDto: CreatePersonagemDto) {
 
     if(createPersonagemDto.strength + createPersonagemDto.defense > 10){
       throw new Error('Niveis de defesa e força maiores que o permitidos, os dois somados não podem ultrapassar 10');
