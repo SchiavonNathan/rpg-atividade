@@ -65,15 +65,15 @@ export class ItemMagicoService {
     return this.itemMagicoRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} itemMagico`;
+  findOne(id: string) {
+    return this.itemMagicoRepository.findOne({where: {id}});
   }
 
   update(id: number, updateItemMagicoDto: UpdateItemMagicoDto) {
     return `This action updates a #${id} itemMagico`;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} itemMagico`;
+  remove(id: string) {
+    return this.itemMagicoRepository.delete(id);
   }
 }

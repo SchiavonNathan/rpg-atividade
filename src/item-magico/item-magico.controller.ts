@@ -19,7 +19,7 @@ export class ItemMagicoController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.itemMagicoService.findOne(+id);
+    return this.itemMagicoService.findOne(id);
   }
 
   @Patch(':id')
@@ -29,6 +29,6 @@ export class ItemMagicoController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.itemMagicoService.remove(+id);
+    return this.itemMagicoService.remove(id);
   }
 }
