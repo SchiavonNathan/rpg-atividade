@@ -33,18 +33,18 @@ export class PersonagemService {
   }
 
   findAll() {
-    return `This action returns all personagem`;
+    return this.personagemRepository.find();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} personagem`;
+  findOne(id: string) {
+    return this.personagemRepository.findOne({where: {id}});
   }
 
-  update(id: number, updatePersonagemDto: UpdatePersonagemDto) {
-    return `This action updates a #${id} personagem`;
+  update(id: string, updatePersonagemDto: UpdatePersonagemDto) {
+    return ;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} personagem`;
+  remove(id: string) {
+    return this.personagemRepository.delete(id);
   }
 }

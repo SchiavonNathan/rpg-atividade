@@ -62,7 +62,7 @@ export class ItemMagicoService {
   }
 
   findAll() {
-    return `This action returns all itemMagico`;
+    return this.itemMagicoRepository.find();
   }
 
   findOne(id: number) {
