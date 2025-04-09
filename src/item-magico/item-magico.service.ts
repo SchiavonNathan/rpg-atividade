@@ -70,7 +70,7 @@ export class ItemMagicoService {
   }
 
   update(id: number, updateItemMagicoDto: UpdateItemMagicoDto) {
-    return `This action updates a #${id} itemMagico`;
+    return this.itemMagicoRepository.update(id, updateItemMagicoDto);
   }
 
   remove(id: string) {

@@ -41,7 +41,7 @@ export class PersonagemService {
   }
 
   update(id: string, updatePersonagemDto: UpdatePersonagemDto) {
-    return ;
+    return this.personagemRepository.update(id, updatePersonagemDto);
   }
 
   remove(id: string) {
