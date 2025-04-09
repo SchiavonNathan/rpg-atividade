@@ -23,10 +23,10 @@ export class PersonagemService {
     const personagem = this.personagemRepository.create({
       name: createPersonagemDto.name,
       adventureName: createPersonagemDto.adventureName,
-      class: Classes.ARQUEIRO,
+      class: createPersonagemDto.class,
       strength: createPersonagemDto.strength,
       defense: createPersonagemDto.defense,
-      level: 10,  
+      level: 1,  
     })
     
     return this.personagemRepository.save(personagem);

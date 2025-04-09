@@ -1,4 +1,6 @@
-import { IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { isEnum, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
+import { Classes } from '../entities/personagem.entity';
+
 
 export class CreatePersonagemDto {
     @IsString()
@@ -9,9 +11,9 @@ export class CreatePersonagemDto {
     @IsNotEmpty()
     adventureName: string;
 
-    @IsString()
+    @IsEnum(Classes)
     @IsNotEmpty()
-    class: string;
+    class: Classes;
 
     @IsNumber()
     @IsNotEmpty()
