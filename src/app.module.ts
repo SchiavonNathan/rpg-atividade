@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
 import { PersonagemModule } from './personagem/personagem.module';
 import { ItemMagicoModule } from './item-magico/item-magico.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -19,7 +17,5 @@ import { ItemMagico } from './item-magico/entities/item-magico.entity';
     synchronize: true,
   }),
   PersonagemModule, ItemMagicoModule],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule {}
