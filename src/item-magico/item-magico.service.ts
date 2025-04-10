@@ -2,8 +2,10 @@ import { Injectable } from '@nestjs/common';
 import { CreateItemMagicoDto } from './dto/create-item-magico.dto';
 import { UpdateItemMagicoDto } from './dto/update-item-magico.dto';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ItemMagico } from './entities/item-magico.entity';
+import { ItemMagico, ItemType } from './entities/item-magico.entity';
 import { Repository } from 'typeorm';
+import { Personagem } from 'src/personagem/entities/personagem.entity';
+
 
 @Injectable()
 export class ItemMagicoService {
@@ -13,7 +15,7 @@ export class ItemMagicoService {
       private itemMagicoRepository: Repository<ItemMagico>
     ) {}
 
-  create(createItemMagicoDto: CreateItemMagicoDto) {
+  async create(createItemMagicoDto: CreateItemMagicoDto) {
 
     if(createItemMagicoDto.strength > 10){
       throw new Error('Nivel de forca maior que 10!');
@@ -65,15 +67,64 @@ export class ItemMagicoService {
     return this.itemMagicoRepository.find();
   }
 
-  findOne(id: string) {
+  async findOne(id: string) {
     return this.itemMagicoRepository.findOne({where: {id}});
   }
 
-  update(id: number, updateItemMagicoDto: UpdateItemMagicoDto) {
+  async update(id: number, updateItemMagicoDto: UpdateItemMagicoDto) {
     return this.itemMagicoRepository.update(id, updateItemMagicoDto);
   }
 
-  remove(id: string) {
+  async remove(id: string) {
     return this.itemMagicoRepository.delete(id);
+  }
+
+  async adicionarItemAoPersonagem(itemId: string, personagemId: string) {
+    const item = await this.itemMagicoRepository.findOne({ where: { id: itemId }, relations: ['personagem'] });
+    if (!item) throw new Error('Item não encontrado');
+
+    if (item.itemType === ItemType.AMULETO) {
+      const amuletoExistente = await this.itemMagicoRepository.findOne({
+        where: {
+          personagem: { id: personagemId },
+          itemType: ItemType.AMULETO,
+        },
+        relations: ['personagem'],
+      });
+  
+      if (amuletoExistente) {
+        throw new Error('O personagem já possui um amuleto.');
+      }
+    }
+    
+    item.personagem = { id: personagemId } as Personagem;
+    return this.itemMagicoRepository.save(item);
+  }
+  
+  async listarItensPorPersonagem(personagemId: string) {
+    return this.itemMagicoRepository.find({
+      where: {
+        personagem: { id: personagemId },
+      },
+      relations: ['personagem'],
+    });
+  }
+  
+  async removerItemDoPersonagem(itemId: string) {
+    const item = await this.itemMagicoRepository.findOne({ where: { id: itemId }, relations: ['personagem'] });
+    if (!item) throw new Error('Item não encontrado');
+    
+    item.personagem = null;
+    return this.itemMagicoRepository.save(item);
+  }
+  
+  async buscarAmuletoDoPersonagem(personagemId: string) {
+    return this.itemMagicoRepository.findOne({
+      where: {
+        personagem: { id: personagemId },
+        itemType: ItemType.AMULETO,
+      },
+      relations: ['personagem'],
+    });
   }
 }

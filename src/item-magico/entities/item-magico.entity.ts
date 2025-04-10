@@ -28,6 +28,9 @@ defense: number;
   })
 itemType: ItemType
 
-@ManyToOne(() => Personagem, (personagem) => personagem.itemmagico)
-personagem: Personagem;
+@ManyToOne(() => Personagem, (personagem) => personagem.itemmagico, {
+  nullable: true,
+  onDelete: 'SET NULL',
+})
+personagem: Personagem | null;
 }
