@@ -21,20 +21,19 @@
   <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
   [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Project setup
+## Inicializar o projeto
 
 ```bash
+# instalar pacotes
 $ npm install
 
+# iniciar container do banco de dados (postgres)
 $ docker compose up -d
 ```
 
 
-## Compile and run the project
+## Compilar e rodar o projeto
 
 ```bash
 # development
