@@ -5,7 +5,9 @@
 [circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
 [circleci-url]: https://circleci.com/gh/nestjs/nest
 
-  <p align="center">Crud RPG - Fabrica de Software</p>
+  <h1 align="center">Crud RPG - Fabrica de Software</h1>
+  <p align="center">Nest.js and Postgresql</p>
+  <p align="center">Nathan Schiavon Sanches Lopes - RA: 23017929-2</p>
 
 ## Inicializar o projeto
 
